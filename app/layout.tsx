@@ -20,7 +20,7 @@ export default function RootLayout({
           <span className="text-xl font-medium tracking-[0.2em] text-gray-500 uppercase my-3 block">
             {logo}
           </span>
-          <h1 className="text-4xl font-bold mb-1 tracking-tight">{title}</h1>
+          <h1 className="text-4xl font-semibold tracking-[0.03em] text-white/95 mb-1">{title}</h1>
           <p className="text-lg text-gray-400 mb-8">{description}</p>
 
           {/* Content */}
