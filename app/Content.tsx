@@ -7,6 +7,7 @@ import { Calculation } from './Calculation'
 import { LearnMoreLink } from './LearnMoreLink'
 import { ModeContainer } from './ModeSwitcher'
 import { OneShotAgreement } from './OneShotAgreement'
+import { PitchDeck } from './pitchdeck'
 import { PrivateInput } from './PrivateInput'
 
 export type Inputs = [string, string]
@@ -15,6 +16,8 @@ export function Content() {
 
   return (
     <>
+      <PitchDeck />
+
       {/* Private inputs */}
       <PrivateInput {...{ inputs: [input1, input2], setValues }} />
 
