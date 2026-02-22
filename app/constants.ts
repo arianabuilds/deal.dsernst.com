@@ -1,3 +1,3 @@
 export const logo = 'SIV'
 export const title = 'Win-Win Deal Calculator'
-export const description = 'Private inputs → win-win gains'
+export const description = 'Private Inputs → Positive-Sum Deals'
