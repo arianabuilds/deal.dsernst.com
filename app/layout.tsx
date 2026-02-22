@@ -17,7 +17,7 @@ export default function RootLayout({
           className="min-h-screen p-8 pt-4 flex flex-col items-center justify-center text-center"
           style={{ minHeight: '100dvh' }} // ignore iOS bottom bar
         >
-          <span className="text-sm font-medium tracking-[0.35em] text-gray-500 uppercase mb-3 block">
+          <span className="text-xl font-medium tracking-[0.2em] text-gray-500 uppercase my-3 block">
             {logo}
           </span>
           <h1 className="text-4xl font-bold mb-1 tracking-tight">{title}</h1>
