@@ -10,7 +10,7 @@ export function PitchDeck() {
       <ScrollFrame className="w-full">
         {slides.map((slide, i) => (
           <div className="snap-center snap-always shrink-0 basis-full" key={i}>
-            <Slide slide={slide} />
+            <Slide index={i} slide={slide} total={slides.length} />
           </div>
         ))}
       </ScrollFrame>

@@ -9,8 +9,8 @@ export type SlideVariant = 'benefit' | 'cta' | 'how' | 'problem' | 'title'
 
 export const slides: Slide[] = [
   {
-    subtitle: 'Easy, safe, & smart digital voting',
-    title: 'SIV',
+    subtitle: 'Digital Voting',
+    title: 'Easy, Safe, & Smart',
     variant: 'title',
   },
   {
