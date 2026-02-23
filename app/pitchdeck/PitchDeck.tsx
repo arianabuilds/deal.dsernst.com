@@ -1,16 +1,26 @@
 'use client'
 
 import { ScrollFrame } from './ScrollFrame'
-import { Slide } from './Slide'
-import { slides } from './slides'
+import { Slide1 } from './Slide1'
+import { Slide2 } from './Slide2'
+import { Slide3 } from './Slide3'
+import { Slide4 } from './Slide4'
+import { Slide5 } from './Slide5'
+import { Slide6 } from './Slide6'
+import { Slide7 } from './Slide7'
+import { Slide8 } from './Slide8'
+import { Slide9 } from './Slide9'
+import { Slide10 } from './Slide10'
+
+const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7, Slide8, Slide9, Slide10]
 
 export function PitchDeck() {
   return (
     <section className="mb-10 w-full max-w-4xl px-4">
       <ScrollFrame className="w-full">
-        {slides.map((slide, i) => (
+        {slides.map((S, i) => (
           <div className="snap-center snap-always shrink-0 basis-full" key={i}>
-            <Slide index={i} slide={slide} total={slides.length} />
+            <S />
           </div>
         ))}
       </ScrollFrame>
