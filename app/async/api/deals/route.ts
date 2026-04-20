@@ -21,7 +21,7 @@ export async function GET() {
   return NextResponse.json(cleaned.reverse())
 }
 
-export async function getAllRecords() {
+async function getAllRecords() {
   if (!dbInitialized) await initPromise
 
   const db = getDb()
