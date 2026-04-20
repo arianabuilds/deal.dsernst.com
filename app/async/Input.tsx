@@ -30,11 +30,12 @@ export function Input({
           autoFocus
           className="px-3 py-2 h-20 w-48 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 no-number-controls text-3xl"
           id="price-input"
-          onChange={(e) => setInput(e.target.value)}
+          inputMode="numeric"
+          onChange={(e) => setInput(normalizeNumberInput(e.target.value))}
           onKeyDown={(e) => e.key === 'Enter' && $submit.current?.click()}
           pattern="\d*"
-          type="number"
-          value={input}
+          type="text"
+          value={formatLarge(input)}
         />
 
         {/* Submit Button */}
@@ -49,4 +50,17 @@ export function Input({
       </div>
     </div>
   )
+}
+
+function formatLarge(value: string) {
+  if (!value) return ''
+  if (value.length <= 3) return value
+  return Number(value).toLocaleString('en-US', {
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  })
+}
+
+function normalizeNumberInput(value: string) {
+  return value.replace(/\D/g, '')
 }
