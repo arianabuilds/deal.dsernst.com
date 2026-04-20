@@ -22,17 +22,14 @@ export function Input({
   return (
     <div className="flex gap-4">
       <div className="flex flex-col">
-        <label
-          className="text-sm font-medium mb-1 text-center"
-          htmlFor="alice-input"
-        >
+        <label className="text-sm font-medium mb-1 text-center" htmlFor="price-input">
           {label || `${roleTitle}'s ${description}`}
         </label>
 
         <input
           autoFocus
-          className="px-3 py-2 h-20 w-40 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 no-number-controls text-3xl"
-          id="alice-input"
+          className="px-3 py-2 h-20 w-48 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 no-number-controls text-3xl"
+          id="price-input"
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && $submit.current?.click()}
           pattern="\d*"
