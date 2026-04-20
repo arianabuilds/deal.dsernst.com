@@ -31,7 +31,7 @@ export function ResultDisplay({ result, title }: { result: MPCResult; title?: st
     <div className="flex flex-col items-center gap-4">
       <TitleHeading title={title} />
       <p className="text-gray-400">Deal possible &nbsp;✅&nbsp; Your win-win price is:</p>
-      <div className="text-4xl font-bold">${result.result.toFixed(2)}</div>
+      <div className="text-4xl font-bold">{formatCurrency(result.result)}</div>
       <p className="text-sm text-gray-400 text-center mt-4">
         Tell the sender to open the link to see the deal.
       </p>
@@ -56,3 +56,12 @@ const ReturnHomeLink = () => (
     <span className="text-xs">↩</span> Home
   </Link>
 )
+
+function formatCurrency(value: number) {
+  return value.toLocaleString('en-US', {
+    currency: 'USD',
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+    style: 'currency',
+  })
+}
