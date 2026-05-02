@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
+import { AgreementText } from './AgreementText'
 import { Calculation } from './Calculation'
 import { LearnMoreLink } from './LearnMoreLink'
 import { ModeContainer } from './ModeSwitcher'
-import { OneShotAgreement } from './OneShotAgreement'
 import { PrivateInput } from './PrivateInput'
 
 export type Inputs = [string, string]
@@ -18,12 +18,11 @@ export function Content() {
       {/* Private inputs */}
       <PrivateInput {...{ inputs: [input1, input2], setValues }} />
 
-      {/* Results */}
-      <ModeContainer tabs={['Report Overlap Only', 'Pick Fair Price']}>
-        {({ ModeSwitcher, overlapOnly }) => (
+      <ModeContainer>
+        {({ activeTab, ModeSwitcherUI }) => (
           <>
-            <Calculation {...{ input1, input2, overlapOnly }} />
-            <OneShotAgreement {...{ ModeSwitcher, overlapOnly }} />
+            <Calculation {...{ activeTab, input1, input2 }} />
+            <AgreementText {...{ activeTab, ModeSwitcherUI }} />
           </>
         )}
       </ModeContainer>

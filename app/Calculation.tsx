@@ -1,20 +1,23 @@
+import type { ActiveTab } from './ModeSwitcher'
+
 import { calcRandFairResult } from './async/calcRandFairResult'
 import { formatCurrency } from './formatDisplay'
 
 export const Calculation = ({
+  activeTab,
   input1,
   input2,
-  overlapOnly,
 }: {
+  activeTab: ActiveTab
   input1: string
   input2: string
-  overlapOnly: boolean
 }) => {
   if (!input1 || !input2) return null
 
   const sellerMinAsk = Number(input1)
   const buyerMaxBid = Number(input2)
 
+  const overlapOnly = activeTab !== 1
   const mpcResult = calcRandFairResult(sellerMinAsk, buyerMaxBid, overlapOnly)
 
   if (!mpcResult.hasOverlap) return <p>❌ No overlap, sorry</p>
