@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import { formatCurrency } from '../formatDisplay'
+
 type MPCResult = {
   hasOverlap: boolean
   result: null | number
@@ -56,12 +58,3 @@ const ReturnHomeLink = () => (
     <span className="text-xs">↩</span> Home
   </Link>
 )
-
-function formatCurrency(value: number) {
-  return value.toLocaleString('en-US', {
-    currency: 'USD',
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-    style: 'currency',
-  })
-}
