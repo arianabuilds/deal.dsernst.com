@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 
 import type { Inputs } from './Content'
+
 import { formatIntegerThousands, normalizeDigitsOnly } from './formatDisplay'
 
 export function PrivateInput({
@@ -22,10 +23,7 @@ export function PrivateInput({
     <div className="flex gap-4">
       <div className="flex flex-col" key={`odds${index + 1}`}>
         {/* Label */}
-        <label
-          className="text-sm font-medium mb-1 text-center"
-          htmlFor={`odds${index + 1}`}
-        >
+        <label className="text-sm font-medium mb-1 text-center" htmlFor={`odds${index + 1}`}>
           {index === 0 ? "Seller's Min" : "Buyer's Max"} Price
         </label>
 

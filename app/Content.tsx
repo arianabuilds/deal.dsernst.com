@@ -32,10 +32,7 @@ export function Content() {
       <LearnMoreLink />
 
       {/* Switch to async mode */}
-      <Link
-        className="text-sm text-gray-400 mt-1 block hover:underline"
-        href="/async"
-      >
+      <Link className="text-sm text-gray-400 mt-1 block hover:underline" href="/async">
         Switch to async mode
       </Link>
     </>

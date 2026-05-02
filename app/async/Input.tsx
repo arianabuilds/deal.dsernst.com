@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react'
 
 import { formatIntegerThousands, normalizeDigitsOnly } from '../formatDisplay'
-
 import { type Choices, roles } from './RoleSelector'
 
 export function Input({
