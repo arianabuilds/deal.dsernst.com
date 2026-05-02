@@ -30,7 +30,7 @@ export function PrivateInput({
         {/* Input Box */}
         <input
           autoFocus
-          className="px-3 py-2 h-20 w-40 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 no-number-controls text-3xl"
+          className="px-3 py-2 h-20 w-48 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 no-number-controls text-3xl"
           inputMode="numeric"
           onChange={(e) => setTempInput(normalizePriceInput(e.target.value))}
           onKeyDown={(e) => e.key === 'Enter' && $submit.current?.click()}
