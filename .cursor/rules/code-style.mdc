@@ -21,3 +21,6 @@ High level rule: "Prefer simple and clean, over complex".
 
 ## Code Organization
 - Minimize intermediate variables when they don't add clarity
+
+## Commands
+- `nr` means `npm run` in this repo (e.g. `nr build`). Do not rewrite `nr` to `next`, `npx`, or `npm run` in comments or docs unless the user asks.
