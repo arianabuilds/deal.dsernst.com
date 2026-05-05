@@ -13,7 +13,7 @@ Works for job offers, acquisitions, favors, and more.
 - Guaranteed fairness and mutual surplus
 - No post-negotiation regret or information leakage
 
-## Core Protocol
+## 🔑 Core Protocol
 
 Each party commits to:
 
