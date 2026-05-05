@@ -99,24 +99,9 @@ This is what makes it **strategyproof**.
 So: **one-shot-ness is critical** to preserving honesty incentives.
 
 &nbsp;  
-</details>
 
 <details>
-<summary>&nbsp;<strong>Summary of Strategyproof Conditions</strong></summary>
-
-&nbsp;  
-These are the conditions under which **truth-telling becomes the optimal strategy**:
-
-1. ✅ **Single-shot protocol** — no retries
-2. 🎲 **Randomized fair price** — private and prevents anchoring
-3. 🤝 **Surplus-sharing** — ensures mutual gain
-4. 🚫 **No incentive to lie** — misreporting carries risk
-
-&nbsp;  
-</details>
-
-<details>
-<summary>&nbsp;<strong>Enforcing One-Shot Agreements</strong> — social vs legal</summary>
+<summary>&nbsp;<strong>- Enforcing One-Shot Agreements</strong> — social vs legal</summary>
 
 ### Type 1 - Verbal/Social One-Shot Agreement
 
@@ -151,6 +136,23 @@ Violating it could void enforceability of the result, or trigger penalty clauses
 - **Downside**: overhead, lawyer involvement, harder to use in fast-paced or informal settings
 - **Best fit**: Large investment deals, acquisitions, licensing negotiations, real estate
 
+</details>
+
+&nbsp;  
+</details>
+
+<details>
+<summary>&nbsp;<strong>Summary of Strategyproof Conditions</strong></summary>
+
+&nbsp;  
+These are the conditions under which **truth-telling becomes the optimal strategy**:
+
+1. ✅ **Single-shot protocol** — no retries
+2. 🎲 **Randomized fair price** — private and prevents anchoring
+3. 🤝 **Surplus-sharing** — ensures mutual gain
+4. 🚫 **No incentive to lie** — misreporting carries risk
+
+&nbsp;  
 </details>
 
 &nbsp;
