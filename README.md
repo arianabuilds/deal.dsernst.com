@@ -83,9 +83,6 @@ The **dominant strategy becomes truth-telling** — _if the surplus is shared fa
 #### ✅&nbsp; If the one-shot commitment holds:
 
 - **Truthful bidding is the dominant strategy**.
-- **Bluffing** (e.g. underbidding) **risks losing a surplus-positive deal**.
-- Overbidding (e.g. seller claims lower Min Ask than real) **risks accepting a bad deal**.
-- Since no retries are allowed, you’re incentivized to **be honest** to avoid missing out or being exploited.
 
 This is what makes it **strategyproof**.
 
