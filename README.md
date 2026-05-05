@@ -13,7 +13,8 @@ Works for job offers, acquisitions, favors, and more.
 - Guaranteed fairness and mutual surplus
 - No post-negotiation regret or information leakage
 
-## 🔑 Core Protocol
+<details open>
+<summary><strong>🔑 Core Protocol</strong> — cutoffs, single run, overlap check, random fair price</summary>
 
 Each party commits to:
 
@@ -30,7 +31,10 @@ The protocol does:
 fair_price = randomIntegerBetween(seller_min_ask, buyer_max_bid)
 ```
 
-### Why the Uniform Random Price
+</details>
+
+<details>
+<summary><strong>Why the Uniform Random Price</strong></summary>
 
 - **Privacy-preserving:** Reveals less about the individual inputs than midpoint
 - **Truth-inducing:** There’s no advantage to lying
@@ -40,7 +44,10 @@ fair_price = randomIntegerBetween(seller_min_ask, buyer_max_bid)
 
 On average, both sides gain. In any round, neither side can exploit the other.
 
-### Economic Implications
+</details>
+
+<details>
+<summary><strong>Economic Implications</strong></summary>
 
 If adopted:
 
@@ -48,7 +55,10 @@ If adopted:
 - Faster resolution of deals, from personal favors to billion-dollar M&A
 - Strategically, **defangs aggressive negotiation tactics**, encouraging better long-term relationships
 
-### “One-Shot” Commitment = Strategic Key
+</details>
+
+<details>
+<summary><strong>“One-Shot” Commitment</strong> — why honesty wins; when it breaks down</summary>
 
 The “one-shot” rule isn’t just a formality—it’s what makes honesty the winning move.
 
@@ -77,7 +87,10 @@ This is what makes it **strategyproof**.
 
 So: **one-shot-ness is critical** to preserving honesty incentives.
 
-### Summary of Strategyproof Conditions
+</details>
+
+<details>
+<summary><strong>Summary of Strategyproof Conditions</strong></summary>
 
 These are the conditions under which **truth-telling becomes the optimal strategy**:
 
@@ -86,7 +99,10 @@ These are the conditions under which **truth-telling becomes the optimal strateg
 3. 🤝 **Surplus-sharing** — ensures mutual gain
 4. 🚫 **No incentive to lie** — misreporting carries risk
 
-## Enforcing One-Shot Agreements
+</details>
+
+<details>
+<summary><strong>Enforcing One-Shot Agreements</strong> — social vs legal</summary>
 
 ### Type 1 - Verbal/Social One-Shot Agreement
 
@@ -120,6 +136,8 @@ Violating it could void enforceability of the result, or trigger penalty clauses
 - **Upside**: externalized enforcement; clearly legible consequence (e.g. invalidating deal or triggering penalties)
 - **Downside**: overhead, lawyer involvement, harder to use in fast-paced or informal settings
 - **Best fit**: Large investment deals, acquisitions, licensing negotiations, real estate
+
+</details>
 
 &nbsp;
 
