@@ -78,11 +78,9 @@ If parties **only get one shot**, then:
 - **Low-balling** risks missing a deal that would have cleared
 - **Overreporting** (e.g., seller feigns less than they'd really accept) risks accepting a worse price than you’d be happy with
 
-The **dominant strategy becomes truth-telling** — _if the surplus is shared fairly and you’re guaranteed no second chances_.
+With no second chances and fair surplus-sharing, honesty becomes the rational move.
 
-#### ✅&nbsp; If the one-shot commitment holds:
-
-- **Truthful bidding is the dominant strategy**.
+#### ✅&nbsp; If the one-shot commitment holds, truthful bidding is the dominant strategy.
 
 This is what makes it **strategyproof**.
 
