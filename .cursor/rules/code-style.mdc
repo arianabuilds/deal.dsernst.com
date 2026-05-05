@@ -4,6 +4,11 @@ alwaysApply: true
 ---
 # Cursor Style Guide
 
+## Core Principles
+- Prefer simple, readable code over clever or verbose code.
+- Minimize intermediate variables when they do not improve clarity.
+- Keep related logic close to where it is used.
+
 ## Data Structure Patterns
 
 High level rule: "Prefer simple and clean, over complex".
@@ -18,9 +23,17 @@ High level rule: "Prefer simple and clean, over complex".
 - Use inline arrays for small, static data sets instead of declaring variables
 - Use array indices for generating keys when the data is static and order won't change
 - Prefer **object spread for props** when wiring values from scope, e.g. `{...{ isLeft }}` or `{...{ activeTab, ModeSwitcherUI }}`, instead of repeating `name={name}`. Do not rewrite spread forms to the long form for "clarity"—this is the intended style.
+- Prefer one-line `if` statements when they stay readable (e.g. `if (condition) return value`).
+- Short JSX block comments that mark logical sections (e.g. `{/* Title */}`, `{/* Description */}`) can be great, when they make it easier to scan or safely collapse regions in large components
 
 ## Code Organization
 - Minimize intermediate variables when they don't add clarity
+- Prefer direct expressions over multi-step transformations when they remain clear.
+
+## Expressions and Defaults
+- Prefer concise expressions for straightforward conditionals and transformations.
+- Use inline defaults only when they match intended behavior; avoid defensive fallbacks unless explicitly required.
+- Prefer nullish defaults (`??`) when `0`, `''`, or `false` are valid values.
 
 ## Commands
 - `nr` means `npm run` in this repo (e.g. `nr build`). Do not rewrite `nr` to `next`, `npx`, or `npm run` in comments or docs unless the user asks.
