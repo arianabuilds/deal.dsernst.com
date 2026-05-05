@@ -13,7 +13,11 @@ Works for job offers, acquisitions, favors, and more.
 - Guaranteed fairness and mutual surplus
 - No post-negotiation regret or information leakage
 
-<details open>
+---
+
+### Details
+
+<details>
 <summary><strong>🔑 Core Protocol</strong> — cutoffs, single run, overlap check, random fair price</summary>
 
 Each party commits to:
