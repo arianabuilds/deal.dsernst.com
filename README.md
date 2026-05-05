@@ -94,7 +94,7 @@ This is what makes it **strategyproof**.
 - Parties can **probe**, e.g. by low-balling first to see if it clears.
 - If it doesn’t, they try again with a higher/lower value.
 - This reintroduces **brinkmanship, gaming, and delay**.
-- We’re back to standard adversarial negotiation dynamics — what we’re trying to rise out of.
+- We’re back to standard adversarial negotiation dynamics — what we’re trying to move past.
 
 So: **one-shot-ness is critical** to preserving honesty incentives.
 
