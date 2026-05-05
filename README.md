@@ -40,7 +40,7 @@ fair_price = randomIntegerBetween(seller_min_ask, buyer_max_bid)
 </details>
 
 <details>
-<summary><strong>Why the Uniform Random Price</strong></summary>
+<summary>&nbsp;<strong>Why the Uniform Random Price</strong></summary>
 
 &nbsp;  
 On average, both sides gain. In any round, neither side can exploit the other.  
@@ -55,7 +55,7 @@ On average, both sides gain. In any round, neither side can exploit the other.
 </details>
 
 <details>
-<summary><strong>Economic Implications</strong></summary>
+<summary>&nbsp;<strong>Economic Implications</strong></summary>
 
 &nbsp;  
 If adopted:
@@ -68,7 +68,7 @@ If adopted:
 </details>
 
 <details>
-<summary><strong>“One-Shot” Commitment</strong> — why honesty wins; when it breaks down</summary>
+<summary>&nbsp;<strong>“One-Shot” Commitment</strong> — why honesty wins; when it breaks down</summary>
 
 &nbsp;  
 The “one-shot” rule isn’t just a formality—it’s what makes honesty the winning move.
@@ -102,7 +102,7 @@ So: **one-shot-ness is critical** to preserving honesty incentives.
 </details>
 
 <details>
-<summary><strong>Summary of Strategyproof Conditions</strong></summary>
+<summary>&nbsp;<strong>Summary of Strategyproof Conditions</strong></summary>
 
 &nbsp;  
 These are the conditions under which **truth-telling becomes the optimal strategy**:
@@ -116,7 +116,7 @@ These are the conditions under which **truth-telling becomes the optimal strateg
 </details>
 
 <details>
-<summary><strong>Enforcing One-Shot Agreements</strong> — social vs legal</summary>
+<summary>&nbsp;<strong>Enforcing One-Shot Agreements</strong> — social vs legal</summary>
 
 ### Type 1 - Verbal/Social One-Shot Agreement
 
