@@ -20,6 +20,7 @@ Works for job offers, acquisitions, favors, and more.
 <details>
 <summary><strong>🔑 Core Protocol</strong> — cutoffs, single run, overlap check, random fair price</summary>
 
+&nbsp;  
 Each party commits to:
 
 - **A true cutoff**: Max Bid for the buyer, Min Ask for the seller
@@ -35,10 +36,14 @@ The protocol does:
 fair_price = randomIntegerBetween(seller_min_ask, buyer_max_bid)
 ```
 
+&nbsp;  
 </details>
 
 <details>
 <summary><strong>Why the Uniform Random Price</strong></summary>
+
+&nbsp;  
+On average, both sides gain. In any round, neither side can exploit the other.  
 
 - **Privacy-preserving:** Reveals less about the individual inputs than midpoint
 - **Truth-inducing:** There’s no advantage to lying
@@ -46,24 +51,26 @@ fair_price = randomIntegerBetween(seller_min_ask, buyer_max_bid)
 - **Prevents anchoring:** Neither party controls the framing
 - **Repeatable fairness:** Over time, expected outcomes balance out
 
-On average, both sides gain. In any round, neither side can exploit the other.
-
+&nbsp;  
 </details>
 
 <details>
 <summary><strong>Economic Implications</strong></summary>
 
+&nbsp;  
 If adopted:
 
 - Massive drop in **negotiation friction costs**
 - Faster resolution of deals, from personal favors to billion-dollar M&A
 - Strategically, **defangs aggressive negotiation tactics**, encouraging better long-term relationships
 
+&nbsp;  
 </details>
 
 <details>
 <summary><strong>“One-Shot” Commitment</strong> — why honesty wins; when it breaks down</summary>
 
+&nbsp;  
 The “one-shot” rule isn’t just a formality—it’s what makes honesty the winning move.
 
 If parties **only get one shot**, then:
@@ -91,11 +98,13 @@ This is what makes it **strategyproof**.
 
 So: **one-shot-ness is critical** to preserving honesty incentives.
 
+&nbsp;  
 </details>
 
 <details>
 <summary><strong>Summary of Strategyproof Conditions</strong></summary>
 
+&nbsp;  
 These are the conditions under which **truth-telling becomes the optimal strategy**:
 
 1. ✅ **Single-shot protocol** — no retries
@@ -103,6 +112,7 @@ These are the conditions under which **truth-telling becomes the optimal strateg
 3. 🤝 **Surplus-sharing** — ensures mutual gain
 4. 🚫 **No incentive to lie** — misreporting carries risk
 
+&nbsp;  
 </details>
 
 <details>
