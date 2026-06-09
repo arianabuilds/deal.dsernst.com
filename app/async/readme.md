@@ -11,7 +11,7 @@ minimizing what the server stores.
 - Bob uses the Share URL to submit his inputs
 - The server validates, decrypts, runs the MPC, and stores results
 - Both parties can view results by opening the Share URL
-- The server only stores a hash fingerprint of Alice's payload (with 24-hour expiration for our use case)
+- The server only stores a hash fingerprint of Alice's payload (with 7-day expiration for our use case)
 
 The design enables async MPC with minimal server storage.
 
@@ -36,12 +36,12 @@ The design enables async MPC with minimal server storage.
 ## Result:
 
 - MPC completed successfully!
-- Async! Alice sends initiation on her own, Bob has 24 hours to respond.
+- Async! Alice sends initiation on her own, Bob has 7 days to respond.
 - Both parties can view results by opening the Share URL (results are stored and persist).
 - Neither party learns the others' input.
 - Server briefly sees the two private inputs, but never needs to store them, not even encrypted.
 - Server does need to store the hash fingerprint of Alice's payload.
-  - For our particular use-case — "Fair" Negotiating https://deal.dsernst.com — we can set initiators' payloads to "expire" if unresponded to within 24 hours. The server can stateless-ly enforce this by checking the encrypted payload timestamp, allowing the DB to safely purge any hashes more than 24 hours old, since those will be rejected by outdated timestamps. So low DB size requirements— just the 1 day's worth of resolved-fingerprints.
+  - For our particular use-case — "Fair" Negotiating https://deal.dsernst.com — we can set initiators' payloads to "expire" if unresponded to within 7 days. The server can stateless-ly enforce this by checking the encrypted payload timestamp, allowing the DB to safely purge any hashes more than 7 days old, since those will be rejected by outdated timestamps. So low DB size requirements— just the 7 days' worth of resolved-fingerprints.
 
 ## Security Considerations:
 
@@ -53,4 +53,4 @@ The design enables async MPC with minimal server storage.
 
 - **Failed POST requests:** Bob's client can show an error and invite retry if his POST fails.
 - **Server crashes mid-computation:** If the server crashes between steps 12a and 12d, Bob would see an error and can retry. Bob still wouldn't learn Alice's inputs, so the failure mode is relatively safe.
-- **Expired payloads:** Payloads expire after 24 hours. If Bob tries to use an expired payload, he'll see an error message.
+- **Expired payloads:** Payloads expire after 7 days. If Bob tries to use an expired payload, he'll see an error message.

@@ -6,12 +6,10 @@ if (!process.env.ENCRYPTION_KEY) throw new Error('ENCRYPTION_KEY must be set')
 
 const ENCRYPTION_KEY = Buffer.from(process.env.ENCRYPTION_KEY, 'base64')
 
-// 24 hours in minutes
-const EXPIRATION_MINUTES = 24 * 60
+// 7 days in minutes
+const EXPIRATION_MINUTES = 7 * 24 * 60
 
-type DecryptResult =
-  | { data: null; error: string }
-  | { data: PlaintextData; error: null }
+type DecryptResult = { data: null; error: string } | { data: PlaintextData; error: null }
 
 export function decryptAndValidatePayload(payload: string): DecryptResult {
   try {
@@ -20,8 +18,7 @@ export function decryptAndValidatePayload(payload: string): DecryptResult {
 
     // Parse payload: iv.encryptedData
     const parts = payload.split('.')
-    if (parts.length !== 2)
-      return { data: null, error: 'Invalid payload format' }
+    if (parts.length !== 2) return { data: null, error: 'Invalid payload format' }
 
     const [ivBase64, encryptedDataBase64] = parts
     const iv = Buffer.from(ivBase64, 'base64url')
@@ -29,22 +26,18 @@ export function decryptAndValidatePayload(payload: string): DecryptResult {
 
     // Decrypt
     const decipher = crypto.createDecipheriv('aes-256-ctr', ENCRYPTION_KEY, iv)
-    const plaintextBuffer = Buffer.concat([
-      decipher.update(encryptedData),
-      decipher.final(),
-    ])
+    const plaintextBuffer = Buffer.concat([decipher.update(encryptedData), decipher.final()])
 
     // Decode binary format
     const decrypted = decodePlaintext(plaintextBuffer)
 
-    // Validate timestamp (24 hour expiration)
+    // Validate timestamp not expired
     const nowMinutes = Math.floor(Date.now() / (60 * 1000))
     const ageMinutes = nowMinutes - decrypted.t
     if (ageMinutes > EXPIRATION_MINUTES)
-      return { data: null, error: 'Payload has expired (24 hour limit)' }
+      return { data: null, error: 'Payload has expired (7 day limit)' }
 
-    if (ageMinutes < 0)
-      return { data: null, error: 'Invalid timestamp (future date)' }
+    if (ageMinutes < 0) return { data: null, error: 'Invalid timestamp (future date)' }
 
     return { data: decrypted, error: null }
   } catch (error) {
