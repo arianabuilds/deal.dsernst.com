@@ -9,7 +9,7 @@ export function InviteTitle({ title }: { title?: string }) {
         {parts ? (
           <>
             <span className="text-white">{parts.name}</span>
-            <span className="text-white/30"> invites you to </span>
+            <span className="text-white"> invites you to </span>
             <span className="text-white">{parts.deal}</span>
           </>
         ) : (

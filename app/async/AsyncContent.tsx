@@ -119,7 +119,7 @@ function TitleSection({
             <span className={name.trim() ? 'text-white' : 'text-white/20'}>
               {name.trim() || 'Name'}
             </span>
-            <span className="text-white/30"> invites you to </span>
+            <span className="text-white"> invites you to </span>
             <span className={dealTitle.trim() ? 'text-white' : 'text-white/20'}>
               {dealTitle.trim() || 'the deal'}
             </span>
