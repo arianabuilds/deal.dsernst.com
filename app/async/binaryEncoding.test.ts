@@ -66,7 +66,7 @@ describe('binaryEncoding', () => {
       const original: PlaintextData = {
         r: 'b',
         t: EPOCH_2025_MINUTES + 1000,
-        title: 'Car sale',
+        title: 'Item sale',
         v: '5000',
       }
 

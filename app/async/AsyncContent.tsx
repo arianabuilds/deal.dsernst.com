@@ -116,7 +116,9 @@ function TitleSection({
           <span className="text-white">{preview}</span>
         ) : (
           <>
-            <span className={name.trim() ? 'text-white' : 'text-white/20'}>{name.trim() || 'Name'}</span>
+            <span className={name.trim() ? 'text-white' : 'text-white/20'}>
+              {name.trim() || 'Name'}
+            </span>
             <span className="text-white/30"> invites you to </span>
             <span className={dealTitle.trim() ? 'text-white' : 'text-white/20'}>
               {dealTitle.trim() || 'the deal'}
@@ -158,7 +160,7 @@ function TitleSection({
               if (name.trim() && dealTitle.trim()) setDealDone(true)
               onNext()
             }}
-            placeholder="Car sale"
+            placeholder="Item sale"
             ref={$deal}
             type="text"
             value={dealTitle}
