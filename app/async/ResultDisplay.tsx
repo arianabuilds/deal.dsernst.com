@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { formatCurrency } from '../formatDisplay'
+import { InviteTitle } from './InviteTitle'
 
 type MPCResult = {
   hasOverlap: boolean
@@ -44,8 +45,7 @@ export function ResultDisplay({ result, title }: { result: MPCResult; title?: st
 }
 
 function TitleHeading({ title }: { title?: string }) {
-  if (!title) return null
-  return <p className="text-white font-medium text-center">{title}</p>
+  return <InviteTitle title={title} />
 }
 
 const ReturnHomeLink = () => (
