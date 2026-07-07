@@ -111,7 +111,7 @@ function TitleSection({
   return (
     <div className="flex flex-col items-center gap-10 w-full max-w-md px-2">
       {/* Live preview */}
-      <p className="text-[clamp(1.35rem,4.5vw,1.875rem)] font-extralight leading-snug tracking-tight text-balance">
+      <p className="text-xl font-light leading-relaxed text-balance">
         {showUnified ? (
           <span className="text-white">{preview}</span>
         ) : (
