@@ -1,47 +1,47 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { LearnMoreLink } from '../LearnMoreLink'
 import { CompactPayload } from './binaryEncoding'
 import { Input } from './Input'
-import { Instructions } from './Instructions'
-import { RoleSelector } from './RoleSelector'
+import { InviteTitle } from './InviteTitle'
+import { type Choices, RoleSelector } from './RoleSelector'
 import { ShareUrlDisplay } from './ShareUrlDisplay'
 import { useInitiatePayload } from './useInitiatePayload'
 
-type Role = 'buyer' | 'seller' | null
+type Role = Choices | null
 
 export function Content() {
   const [titleStepDone, setTitleStepDone] = useState(false)
-  const [title, setTitle] = useState('')
+  const [name, setName] = useState('')
+  const [dealTitle, setDealTitle] = useState('')
   const [role, setRole] = useState<Role>(null)
   const [value, setValue] = useState<null | string>(null)
 
+  const title = composeInviteTitle(name, dealTitle)
   const { loading, signedPayload } = useInitiatePayload(role, value, title)
 
-  // Share URL on its own screen once ready (or loading/error)
   if (value) return <ShareUrlScreen {...{ loading, signedPayload }} />
 
   return (
     <>
-      <div className="flex flex-col items-center gap-8">
-        {/* Step 1: Optional title — always visible, editable */}
-        <TitleStep onNext={() => setTitleStepDone(true)} {...{ setTitle, title, titleStepDone }} />
+      <div className="flex flex-col items-center gap-10 w-full">
+        <TitleSection
+          {...{ dealTitle, name, setDealTitle, setName, titleStepDone }}
+          onNext={() => setTitleStepDone(true)}
+        />
 
-        {/* Step 2: Buyer / Seller — visible after title step, editable */}
         {titleStepDone && (
-          <div className="w-full border-t border-gray-600/60 mt-2 pt-8 flex flex-col items-center">
+          <div className="w-full max-w-md border-t border-white/10 pt-10 flex flex-col items-center">
             <RoleSelector onSelect={setRole} selectedRole={role} />
           </div>
         )}
 
-        {/* Step 3: Cutoff amount — visible after role chosen, editable */}
         {role && (
-          <div className="w-full border-t border-gray-600/60 mt-2 pt-8 flex flex-col items-center">
+          <div className="w-full max-w-md border-t border-white/10 pt-10 flex flex-col items-center">
             <Input onSubmit={setValue} role={role} />
-            <Instructions />
           </div>
         )}
       </div>
@@ -53,6 +53,13 @@ export function Content() {
       </Link>
     </>
   )
+}
+
+function composeInviteTitle(name: string, dealTitle: string) {
+  const trimmedName = name.trim()
+  const trimmedDeal = dealTitle.trim()
+  if (!trimmedName || !trimmedDeal) return ''
+  return `${trimmedName} invites you to ${trimmedDeal}`
 }
 
 function ShareUrlScreen({
@@ -76,44 +83,106 @@ function ShareUrlScreen({
   )
 }
 
-function TitleStep({
+function TitleSection({
+  dealTitle,
+  name,
   onNext,
-  setTitle,
-  title,
+  setDealTitle,
+  setName,
   titleStepDone,
 }: {
+  dealTitle: string
+  name: string
   onNext: () => void
-  setTitle: (value: string) => void
-  title: string
+  setDealTitle: (value: string) => void
+  setName: (value: string) => void
   titleStepDone: boolean
 }) {
-  const isEmpty = !title.trim()
+  const $deal = useRef<HTMLInputElement>(null)
+  const [dealDone, setDealDone] = useState(false)
+  const preview = composeInviteTitle(name, dealTitle)
+  const isEmpty = !name.trim() && !dealTitle.trim()
+  const showUnified = dealDone && Boolean(name.trim() && dealTitle.trim())
+
+  if (titleStepDone && preview) return <InviteTitle title={preview} />
+
+  if (titleStepDone) return null
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <label className="text-sm text-gray-400 text-center" htmlFor="deal-title">
-        Optional title:
-      </label>
-      <div className="flex gap-2 items-center">
-        <input
-          autoFocus
-          className="px-3 py-2 min-w-[12rem] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base placeholder:text-gray-500"
-          id="deal-title"
-          onChange={(e) => setTitle(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && onNext()}
-          placeholder="e.g. Car sale"
-          type="text"
-          value={title}
-        />
-        {!titleStepDone && (
-          <button
-            className="w-16 px-4 py-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100/10 active:bg-gray-100/20"
-            onClick={onNext}
-          >
-            {isEmpty ? 'Skip' : 'Next'}
-          </button>
+    <div className="flex flex-col items-center gap-10 w-full max-w-md px-2">
+      {/* Live preview */}
+      <p className="text-[clamp(1.35rem,4.5vw,1.875rem)] font-extralight leading-snug tracking-tight text-balance">
+        {showUnified ? (
+          <span className="text-white">{preview}</span>
+        ) : (
+          <>
+            <span className={name.trim() ? 'text-white' : 'text-white/20'}>{name.trim() || 'Name'}</span>
+            <span className="text-white/30"> invites you to </span>
+            <span className={dealTitle.trim() ? 'text-white' : 'text-white/20'}>
+              {dealTitle.trim() || 'the deal'}
+            </span>
+          </>
         )}
+      </p>
+
+      {/* Fields */}
+      <div className="grid w-full gap-3 sm:grid-cols-2">
+        <label className="flex flex-col gap-2 text-left">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/25">Name</span>
+          <input
+            autoFocus
+            className="w-full rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3 text-[15px] text-white placeholder:text-white/20 focus:border-white/20 focus:bg-white/[0.05] focus:outline-none transition-colors"
+            onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key !== 'Enter') return
+              e.preventDefault()
+              $deal.current?.focus()
+            }}
+            placeholder="Sarah"
+            type="text"
+            value={name}
+          />
+        </label>
+        <label className="flex flex-col gap-2 text-left">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/25">Deal</span>
+          <input
+            className="w-full rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3 text-[15px] text-white placeholder:text-white/20 focus:border-white/20 focus:bg-white/[0.05] focus:outline-none transition-colors"
+            onBlur={() => name.trim() && dealTitle.trim() && setDealDone(true)}
+            onChange={(e) => {
+              setDealTitle(e.target.value)
+              if (!e.target.value.trim()) setDealDone(false)
+            }}
+            onFocus={() => setDealDone(false)}
+            onKeyDown={(e) => {
+              if (e.key !== 'Enter') return
+              if (name.trim() && dealTitle.trim()) setDealDone(true)
+              onNext()
+            }}
+            placeholder="Car sale"
+            ref={$deal}
+            type="text"
+            value={dealTitle}
+          />
+        </label>
       </div>
+
+      {isEmpty ? (
+        <button
+          className="text-sm text-white/35 hover:text-white/55 transition-colors cursor-pointer"
+          onClick={onNext}
+          type="button"
+        >
+          Skip
+        </button>
+      ) : (
+        <button
+          className="px-10 py-2.5 border border-white/20 rounded-full cursor-pointer hover:bg-white/[0.04] active:bg-white/[0.07] transition-colors"
+          onClick={onNext}
+          type="button"
+        >
+          Next
+        </button>
+      )}
     </div>
   )
 }
