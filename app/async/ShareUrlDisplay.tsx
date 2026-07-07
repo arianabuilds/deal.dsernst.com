@@ -5,7 +5,7 @@ import { useState } from 'react'
 import type { CompactPayload } from './binaryEncoding'
 
 export function ShareUrlDisplay({ payload }: { payload: CompactPayload }) {
-  const shareUrl = `${window.location.origin}/b/${payload.ev}`
+  const shareUrl = `${window.location.origin}/b/${encodeURIComponent(payload.ev)}`
   const [copied, setCopied] = useState(false)
 
   return (
