@@ -1,6 +1,6 @@
 'use client'
 
-import { Lock } from 'lucide-react'
+import { Check, Lock, X } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 export const instructionSteps = [
@@ -15,10 +15,24 @@ export const instructionSteps = [
   </>,
   <>
     <div className="flex flex-col gap-5 text-left">
-      <OutcomeRow icon="✅">
+      <OutcomeRow
+        icon={
+          <span className="flex size-5 shrink-0 items-center justify-center rounded-md bg-emerald-400/20">
+            <Check className="size-3.5 text-emerald-400" strokeWidth={2.5} />
+          </span>
+        }
+      >
         If there is an overlap, a fair random win-win price will be picked between min &amp; max.
       </OutcomeRow>
-      <OutcomeRow icon="❌">If there&apos;s no overlap, no hard feelings.</OutcomeRow>
+      <OutcomeRow
+        icon={
+          <span className="flex size-5 shrink-0 items-center justify-center rounded-md bg-red-500/15">
+            <X className="size-3.5 text-red-500" strokeWidth={2.5} />
+          </span>
+        }
+      >
+        If there&apos;s no overlap, no hard feelings.
+      </OutcomeRow>
     </div>
     <Hint>
       Unlike traditional negotiations, both sides&apos; best move here is to enter your honest
@@ -36,10 +50,10 @@ export function InstructionPanel({ children }: { children: ReactNode }) {
   )
 }
 
-function OutcomeRow({ children, icon }: { children: ReactNode; icon: string }) {
+function OutcomeRow({ children, icon }: { children: ReactNode; icon: ReactNode }) {
   return (
-    <div className="flex gap-3">
-      <span className="shrink-0 leading-relaxed">{icon}</span>
+    <div className="flex items-start gap-3">
+      {icon}
       <p className="leading-relaxed text-white/60">{children}</p>
     </div>
   )
