@@ -8,7 +8,7 @@ import type { PlaintextData } from './binaryEncoding'
 import { LearnMoreLink } from '../LearnMoreLink'
 import { BobSubmission } from './BobSubmission'
 import { Input } from './Input'
-import { InstructionStep, StepActions } from './Instructions'
+import { InstructionPanel, InstructionStep, StepActions, StepDots } from './Instructions'
 import { InviteTitle } from './InviteTitle'
 import { ResultDisplay } from './ResultDisplay'
 
@@ -70,7 +70,7 @@ export function BobContent() {
   }, [payload])
 
   if (loading)
-    return <p className="text-white/40 mt-8 animate-pulse font-extralight text-lg">Loading invite...</p>
+    return <p className="text-white/35 text-sm tracking-wide animate-pulse">Loading invite...</p>
 
   if (error || !aliceData) return <p className="text-red-400">{error || 'Invalid payload'}</p>
 
@@ -83,40 +83,43 @@ export function BobContent() {
   if (bobsValue) return <BobSubmission alicePayload={payload!} bobsValue={bobsValue} onError={setError} />
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center w-full max-w-md gap-7">
       <InviteTitle title={aliceData.title} />
+      <StepDots step={step} />
 
-      <div className="w-full border-t border-white/[0.06] mt-14 pt-14 flex flex-col items-center">
-        {step < 2 && (
-          <InstructionStep
-            onBack={step > 0 ? () => setStep(step - 1) : undefined}
-            onNext={() => setStep(step + 1)}
-            step={step}
-          />
-        )}
+      {step < 2 && (
+        <InstructionStep
+          onBack={step > 0 ? () => setStep(step - 1) : undefined}
+          onNext={() => setStep(step + 1)}
+          step={step}
+        />
+      )}
 
-        {step === 2 && (
-          <div className="flex flex-col items-center gap-12 max-w-md px-4 text-center">
-            <div className="flex flex-col gap-5 text-[17px] font-extralight leading-relaxed text-white/60">
+      {step === 2 && (
+        <div className="flex flex-col items-center gap-8 w-full px-4">
+          <InstructionPanel>
+            <div className="flex flex-col gap-3 text-base leading-relaxed text-white/60 text-center">
               <p>
-                You&apos;re the potential <b className="text-cyan-200">{roleLabel}</b> in this deal.
+                You&apos;re the potential{' '}
+                <strong className="font-normal text-white">{roleLabel}</strong> in this deal.
               </p>
-              <p className="text-[15px] text-white/35">Ready to enter your number?</p>
+              <p className="text-sm text-white/35">Ready to enter your number?</p>
             </div>
-            <StepActions onBack={() => setStep(1)} onClick={() => setStep(3)} />
-          </div>
-        )}
+          </InstructionPanel>
+          <StepActions onBack={() => setStep(1)} onClick={() => setStep(3)} />
+        </div>
+      )}
 
-        {step === 3 && (
+      {step === 3 && (
+        <>
           <Input
             label={`Enter your ${bobRole === 'buyer' ? 'max offer' : 'min price'}`}
             onBack={() => setStep(2)}
             onSubmit={setBobsValue}
           />
-        )}
-      </div>
-
-      {step === 3 && <LearnMoreLink />}
+          <LearnMoreLink />
+        </>
+      )}
     </div>
   )
 }

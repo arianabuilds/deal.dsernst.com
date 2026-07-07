@@ -11,10 +11,10 @@ type MPCResult = {
 export function ResultDisplay({ result, title }: { result: MPCResult; title?: string }) {
   if (!result.hasOverlap)
     return (
-      <div className="flex flex-col items-center gap-4">
-        <TitleHeading title={title} />
-        <p className="text-2xl">❌ No overlap, sorry</p>
-        <p className="text-gray-400 text-sm">
+      <div className="flex flex-col items-center gap-5 max-w-md">
+        <InviteTitle title={title} />
+        <p className="text-xl text-white/90">No overlap</p>
+        <p className="text-sm text-white/40">
           The seller&apos;s minimum is higher than the buyer&apos;s maximum.
         </p>
         <ReturnHomeLink />
@@ -23,33 +23,28 @@ export function ResultDisplay({ result, title }: { result: MPCResult; title?: st
 
   if (result.result === null)
     return (
-      <div className="flex flex-col items-center gap-4">
-        <TitleHeading title={title} />
-        <div className="text-2xl font-bold">✅ A deal is possible</div>
+      <div className="flex flex-col items-center gap-5 max-w-md">
+        <InviteTitle title={title} />
+        <p className="text-xl text-white/90">A deal is possible</p>
         <ReturnHomeLink />
       </div>
     )
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <TitleHeading title={title} />
-      <p className="text-gray-400">Deal possible &nbsp;✅&nbsp; Your win-win price is:</p>
-      <div className="text-4xl font-bold">{formatCurrency(result.result)}</div>
-      <p className="text-sm text-gray-400 text-center mt-4">
+    <div className="flex flex-col items-center gap-5 max-w-md">
+      <InviteTitle title={title} />
+      <p className="text-sm text-white/40">Your win-win price</p>
+      <div className="text-4xl font-light tracking-tight text-white">{formatCurrency(result.result)}</div>
+      <p className="text-sm text-white/35 text-center">
         Tell the sender to open the link to see the deal.
       </p>
-
       <ReturnHomeLink />
     </div>
   )
 }
 
-function TitleHeading({ title }: { title?: string }) {
-  return <InviteTitle title={title} />
-}
-
 const ReturnHomeLink = () => (
-  <Link className="text-sm mt-16 text-gray-600 block hover:underline" href="/async">
+  <Link className="text-sm mt-10 text-white/30 block hover:text-white/50 transition-colors" href="/async">
     <span className="text-xs">↩</span> Home
   </Link>
 )

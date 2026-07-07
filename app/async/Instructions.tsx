@@ -1,31 +1,70 @@
 'use client'
 
+import { Lock } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 export const instructionSteps = [
   <>
     <p>
-      You each have a <b className="text-cyan-200">private number</b>.
+      You can only submit your value <span className="italic">once</span>.
     </p>
-    <p>
-      Submit <b className="italic text-yellow-300/93">once</b> — neither side sees the other&apos;s.
+    <p className="flex items-center justify-center gap-2">
+      <Lock className="size-[15px] shrink-0 text-white/40" strokeWidth={1.75} />
+      Neither side will see the other&apos;s input.
     </p>
   </>,
   <>
-    <p>
-      If there <b className="text-green-300">is overlap</b>, a fair win-win price is picked.
-    </p>
-    <p>
-      If there&apos;s <b className="text-pink-300">no overlap</b>, walk away — no hard feelings.
-    </p>
-    <div className="mt-2 pt-6 border-t border-white/[0.06] flex flex-col gap-1.5">
-      <p>
-        Your best move: <b className="text-white/90">honest cutoff</b>.
-      </p>
-      <p className="text-[15px] text-white/35">Posturing is a losing strategy.</p>
+    <div className="flex flex-col gap-5 text-left">
+      <OutcomeRow icon="✅">
+        If there is an overlap, a fair random win-win price will be picked between min &amp; max.
+      </OutcomeRow>
+      <OutcomeRow icon="❌">If there&apos;s no overlap, no hard feelings.</OutcomeRow>
     </div>
+    <Hint>
+      Unlike traditional negotiations, both sides&apos; best move here is to enter your honest
+      cutoff point, to not miss potential win-win deals. &ldquo;Posturing&rdquo; is a losing
+      strategy.
+    </Hint>
   </>,
 ] as const
+
+export function InstructionPanel({ children }: { children: ReactNode }) {
+  return (
+    <div className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-7 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+      {children}
+    </div>
+  )
+}
+
+function OutcomeRow({ children, icon }: { children: ReactNode; icon: string }) {
+  return (
+    <div className="flex gap-3">
+      <span className="shrink-0 leading-relaxed">{icon}</span>
+      <p className="leading-relaxed text-white/60">{children}</p>
+    </div>
+  )
+}
+
+function Hint({ children }: { children: ReactNode }) {
+  return (
+    <p className="mt-6 border-t border-white/[0.06] pt-6 text-left text-sm leading-relaxed text-white/40">
+      <span className="text-white/55">Hint:</span> {children}
+    </p>
+  )
+}
+
+export function StepDots({ step, total = 4 }: { step: number; total?: number }) {
+  return (
+    <div className="flex gap-1.5">
+      {Array.from({ length: total }, (_, i) => (
+        <div
+          className={`h-0.5 w-6 rounded-full transition-colors ${i <= step ? 'bg-white/45' : 'bg-white/10'}`}
+          key={i}
+        />
+      ))}
+    </div>
+  )
+}
 
 export function InstructionStep({
   onBack,
@@ -37,10 +76,14 @@ export function InstructionStep({
   step: number
 }) {
   return (
-    <div className="flex flex-col items-center gap-12 w-full max-w-md px-4">
-      <div className="flex flex-col gap-5 text-[17px] font-extralight leading-relaxed text-white/60 text-center">
-        {instructionSteps[step]}
-      </div>
+    <div className="flex flex-col items-center gap-8 w-full px-4">
+      <InstructionPanel>
+        <div
+          className={`flex flex-col gap-4 text-base leading-relaxed text-white/60 ${step === 0 ? 'text-center' : ''}`}
+        >
+          {instructionSteps[step]}
+        </div>
+      </InstructionPanel>
       <StepActions onBack={onBack} onClick={onNext} />
     </div>
   )
@@ -70,7 +113,7 @@ export function StepActions({
 export function StepBack({ onClick }: { onClick: () => void }) {
   return (
     <button
-      className="text-sm text-white/25 hover:text-white/45 transition-colors cursor-pointer"
+      className="text-sm text-white/30 hover:text-white/50 transition-colors cursor-pointer"
       onClick={onClick}
       type="button"
     >
@@ -90,7 +133,7 @@ export function StepNext({
 }) {
   return (
     <button
-      className="min-w-[7.5rem] px-10 py-2.5 border border-white/15 rounded-full text-[15px] text-white/90 cursor-pointer hover:bg-white/[0.05] hover:border-white/25 active:bg-white/[0.08] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+      className="min-w-32 px-10 py-2.5 rounded-full text-[15px] font-medium bg-white text-black cursor-pointer hover:bg-white/90 active:bg-white/80 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       disabled={disabled}
       onClick={onClick}
       type="button"
