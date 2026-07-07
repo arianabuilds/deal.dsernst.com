@@ -133,7 +133,7 @@ export function StepNext({
 }) {
   return (
     <button
-      className="min-w-32 px-10 py-2.5 rounded-full text-[15px] font-medium bg-white text-black cursor-pointer hover:bg-white/90 active:bg-white/80 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+      className="min-w-32 px-10 py-2.5 rounded-full text-[15px] font-medium bg-white/80 text-black cursor-pointer hover:bg-white/90 active:bg-white/80 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       disabled={disabled}
       onClick={onClick}
       type="button"

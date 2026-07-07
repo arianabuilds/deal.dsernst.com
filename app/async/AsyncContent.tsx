@@ -160,7 +160,7 @@ function TitleSection({
               if (name.trim() && dealTitle.trim()) setDealDone(true)
               onNext()
             }}
-            placeholder="Item sale"
+            placeholder="Car sale"
             ref={$deal}
             type="text"
             value={dealTitle}
