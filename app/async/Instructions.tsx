@@ -30,7 +30,7 @@ export const instructionSteps = [
 
 export function InstructionPanel({ children }: { children: ReactNode }) {
   return (
-    <div className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-7 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+    <div className="w-full rounded-2xl border border-cyan-400/10 bg-gradient-to-b from-cyan-400/[0.06] to-cyan-400/[0.02] px-6 py-7 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]">
       {children}
     </div>
   )
