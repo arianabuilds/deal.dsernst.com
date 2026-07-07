@@ -17,7 +17,7 @@ export const instructionSteps = [
     <div className="flex flex-col gap-5 text-left">
       <OutcomeRow
         icon={
-          <span className="flex size-5 shrink-0 items-center justify-center rounded-md bg-emerald-400/20">
+          <span className="flex h-[1.375em] w-5 shrink-0 items-center justify-center rounded-md bg-emerald-400/20">
             <Check className="size-3.5 text-emerald-400" strokeWidth={2.5} />
           </span>
         }
@@ -26,7 +26,7 @@ export const instructionSteps = [
       </OutcomeRow>
       <OutcomeRow
         icon={
-          <span className="flex size-5 shrink-0 items-center justify-center rounded-md bg-red-500/15">
+          <span className="flex h-[1.375em] w-5 shrink-0 items-center justify-center rounded-md bg-red-500/15">
             <X className="size-3.5 text-red-500" strokeWidth={2.5} />
           </span>
         }
@@ -54,7 +54,7 @@ function OutcomeRow({ children, icon }: { children: ReactNode; icon: ReactNode }
   return (
     <div className="flex items-start gap-3">
       {icon}
-      <p className="leading-relaxed text-white/60">{children}</p>
+      <p className="leading-snug text-white/60">{children}</p>
     </div>
   )
 }
