@@ -33,15 +33,15 @@ export function Input({
   }, [animate])
 
   return (
-    <div className="flex w-full flex-col items-center">
+    <div className="flex w-full flex-col items-stretch">
       <label
-        className={`mb-4 block text-center text-[10px] uppercase tracking-[0.22em] text-white/25 ${animate ? 'instruction-stagger-1' : ''}`}
+        className={`mb-3 block text-center text-[10px] uppercase tracking-[0.22em] text-white/25 sm:mb-4 ${animate ? 'instruction-stagger-1' : ''}`}
         htmlFor="price-input"
       >
         {label || `${roleTitle}'s ${description}`}
       </label>
 
-      <div className={animate ? 'instruction-stagger-2' : ''}>
+      <div className={`w-full ${animate ? 'instruction-stagger-2' : ''}`}>
         <AutosizeInput
           autoFocus={!animate}
           className="border-white/15 bg-white/[0.03] rounded-xl text-white focus:ring-white/20 focus:border-white/25"
@@ -56,7 +56,7 @@ export function Input({
       </div>
 
       <StepNext
-        className={`mt-8 ${animate ? 'instruction-stagger-3' : ''}`}
+        className={`mt-5 sm:mt-8 ${animate ? 'instruction-stagger-3' : ''}`}
         disabled={!input}
         onClick={() => input && onSubmit(input)}
         ref={$submit}

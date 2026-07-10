@@ -106,10 +106,10 @@ export function BobContent() {
     return <BobSubmission alicePayload={payload!} bobsValue={bobsValue} onError={setError} />
 
   return (
-    <div className="flex w-full flex-col items-center gap-10">
+    <div className="flex w-full flex-col items-center gap-5 sm:gap-8">
       <InviteTitle subtitle={`You're the potential ${bobRole}.`} title={aliceData.title} />
 
-      <div className="flex w-full flex-col items-center gap-8">
+      <div className="flex w-full flex-col items-stretch gap-4 sm:gap-6">
         <InstructionLog step={step} />
 
         {step < INPUT_STEP ? (
@@ -119,7 +119,7 @@ export function BobContent() {
           />
         ) : (
           showInput && (
-            <div className="flex w-full scroll-mb-8 flex-col items-center gap-8" ref={inputRef}>
+            <div className="flex w-full scroll-mb-8 flex-col items-stretch gap-6 sm:gap-8" ref={inputRef}>
               <Input
                 animate
                 label={`Enter your ${bobRole === 'buyer' ? 'max offer' : 'min price'}`}

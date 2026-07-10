@@ -6,7 +6,7 @@ import { type ComponentProps, forwardRef, type ReactNode, useEffect, useRef, use
 export const INSTRUCTION_STEP_COUNT = 3
 
 export const instructionSteps = [
-  <div className="flex flex-col gap-5 text-left" key="once">
+  <div className="flex flex-col gap-4 text-left sm:gap-5" key="once">
     <OutcomeRow
       icon={
         <IconSlot>
@@ -26,7 +26,7 @@ export const instructionSteps = [
       Neither side will see the other&apos;s input.
     </OutcomeRow>
   </div>,
-  <div className="flex flex-col gap-5 text-left" key="outcomes">
+  <div className="flex flex-col gap-4 text-left sm:gap-5" key="outcomes">
     <OutcomeRow
       icon={
         <span className="flex h-[1.375em] w-5 shrink-0 items-center justify-center rounded-md bg-emerald-400/20">
@@ -67,7 +67,7 @@ export function InstructionLog({ step }: { step: number }) {
 
   return (
     <InstructionPanel>
-      <div className="flex flex-col gap-6 transition-[gap] duration-500 ease-out">
+      <div className="flex flex-col gap-4 transition-[gap] duration-500 ease-out sm:gap-6">
         {visibleSteps.map((content, i) => (
           <InstructionLogEntry
             age={currentIdx < 0 ? instructionSteps.length : currentIdx - i}
@@ -86,7 +86,7 @@ export function InstructionLog({ step }: { step: number }) {
 
 export function InstructionPanel({ children }: { children: ReactNode }) {
   return (
-    <div className="w-full rounded-2xl border border-cyan-400/10 bg-linear-to-b from-cyan-400/6 to-cyan-400/2 px-6 py-7 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_24px_48px_-24px_rgba(6,182,212,0.12)] transition-[padding] duration-500 ease-out">
+    <div className="w-full rounded-xl border border-cyan-400/10 bg-linear-to-b from-cyan-400/6 to-cyan-400/2 px-4 py-5 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_24px_48px_-24px_rgba(6,182,212,0.12)] transition-[padding] duration-500 ease-out sm:rounded-2xl sm:px-6 sm:py-7">
       {children}
     </div>
   )
@@ -158,7 +158,7 @@ export const StepNext = forwardRef(function StepNext(
 ) {
   return (
     <button
-      className={`min-w-32 px-10 py-2.5 rounded-full text-[15px] font-medium bg-white/80 text-black cursor-pointer hover:bg-white/90 active:bg-white/80 transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${className}`}
+      className={`w-full px-10 py-3 sm:w-auto sm:min-w-32 sm:py-2.5 rounded-full text-[15px] font-medium bg-white/80 text-black cursor-pointer hover:bg-white/90 active:bg-white/80 transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${className}`}
       disabled={disabled}
       onClick={onClick}
       ref={ref}
@@ -208,7 +208,7 @@ function InstructionLogEntry({
 
   return (
     <div
-      className={`grid transition-[grid-template-rows] duration-550 ease-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'} ${isFirst ? '' : 'border-t border-white/6 pt-6'}`}
+      className={`grid transition-[grid-template-rows] duration-550 ease-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'} ${isFirst ? '' : 'border-t border-white/6 pt-4 sm:pt-6'}`}
     >
       <div className="min-h-0 overflow-hidden">
         <div
