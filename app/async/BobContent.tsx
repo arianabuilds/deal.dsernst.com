@@ -1,14 +1,14 @@
 'use client'
 
 import { useParams, usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import type { PlaintextData } from './binaryEncoding'
 
 import { LearnMoreLink } from '../LearnMoreLink'
 import { BobSubmission } from './BobSubmission'
 import { Input } from './Input'
-import { InstructionStep, StepDots } from './Instructions'
+import { FlowIn, InstructionLog, StepActions, StepDots } from './Instructions'
 import { InviteTitle } from './InviteTitle'
 import { ResultDisplay } from './ResultDisplay'
 
@@ -34,6 +34,12 @@ export function BobContent() {
     hasOverlap: boolean
     result: null | number
   }>(null)
+  const prevStep = useRef(0)
+  const inputEntering = step === 2 && prevStep.current < 2
+
+  useEffect(() => {
+    prevStep.current = step
+  }, [step])
 
   useEffect(() => {
     if (!payload) {
@@ -87,24 +93,27 @@ export function BobContent() {
       <InviteTitle subtitle={`You're the potential ${bobRole}.`} title={aliceData.title} />
       <StepDots step={step} total={3} />
 
-      {step < 2 && (
-        <InstructionStep
-          onBack={step > 0 ? () => setStep(step - 1) : undefined}
-          onNext={() => setStep(step + 1)}
-          step={step}
-        />
-      )}
+      <div className="flex flex-col items-center gap-8 w-full px-4">
+        <InstructionLog showAll={step >= 2} step={Math.min(step, 1)} />
 
-      {step === 2 && (
-        <>
-          <Input
-            label={`Enter your ${bobRole === 'buyer' ? 'max offer' : 'min price'}`}
-            onBack={() => setStep(1)}
-            onSubmit={setBobsValue}
+        {step < 2 ? (
+          <StepActions
+            onBack={step > 0 ? () => setStep(step - 1) : undefined}
+            onClick={() => setStep(step + 1)}
           />
-          <LearnMoreLink />
-        </>
-      )}
+        ) : (
+          <FlowIn play={inputEntering}>
+            <div className="flex flex-col items-center gap-8">
+              <Input
+                label={`Enter your ${bobRole === 'buyer' ? 'max offer' : 'min price'}`}
+                onBack={() => setStep(1)}
+                onSubmit={setBobsValue}
+              />
+              <LearnMoreLink />
+            </div>
+          </FlowIn>
+        )}
+      </div>
     </div>
   )
 }

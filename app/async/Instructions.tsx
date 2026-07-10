@@ -1,8 +1,7 @@
 'use client'
 
-import type { ReactNode } from 'react'
-
 import { Check, Lock, X } from 'lucide-react'
+import { type ReactNode, useEffect, useRef, useState } from 'react'
 
 export const instructionSteps = [
   <>
@@ -43,9 +42,59 @@ export const instructionSteps = [
   </>,
 ] as const
 
+export function FlowIn({ children, play }: { children: ReactNode; play: boolean }) {
+  const [visible, setVisible] = useState(!play)
+
+  useEffect(() => {
+    if (!play) return
+    const id = requestAnimationFrame(() => setVisible(true))
+    return () => cancelAnimationFrame(id)
+  }, [play])
+
+  return (
+    <div
+      className={`grid transition-[grid-template-rows] duration-550 ease-out ${visible ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+    >
+      <div className="min-h-0 overflow-hidden">
+        <div className={play && visible ? 'instruction-flow-in' : play ? 'opacity-0' : ''}>
+          {children}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function InstructionLog({ showAll, step }: { showAll?: boolean; step: number }) {
+  const lastIdx = showAll ? instructionSteps.length - 1 : step
+  const visibleSteps = instructionSteps.slice(0, lastIdx + 1)
+  const prevLastIdx = useRef(lastIdx)
+  const enteringIdx = lastIdx > prevLastIdx.current ? lastIdx : null
+
+  useEffect(() => {
+    prevLastIdx.current = lastIdx
+  }, [lastIdx])
+
+  return (
+    <InstructionPanel>
+      <div className="flex flex-col gap-6 transition-[gap] duration-500 ease-out">
+        {visibleSteps.map((content, i) => (
+          <InstructionLogEntry
+            entering={enteringIdx === i}
+            isCurrent={!showAll && i === lastIdx}
+            isFirst={i === 0}
+            key={i}
+          >
+            {content}
+          </InstructionLogEntry>
+        ))}
+      </div>
+    </InstructionPanel>
+  )
+}
+
 export function InstructionPanel({ children }: { children: ReactNode }) {
   return (
-    <div className="w-full rounded-2xl border border-cyan-400/10 bg-linear-to-b from-cyan-400/6 to-cyan-400/2 px-6 py-7 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]">
+    <div className="w-full rounded-2xl border border-cyan-400/10 bg-linear-to-b from-cyan-400/6 to-cyan-400/2 px-6 py-7 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-[padding] duration-500 ease-out">
       {children}
     </div>
   )
@@ -62,13 +111,7 @@ export function InstructionStep({
 }) {
   return (
     <div className="flex flex-col items-center gap-8 w-full px-4">
-      <InstructionPanel>
-        <div
-          className={`flex flex-col gap-4 text-base leading-relaxed text-white/60 ${step === 0 ? 'text-center' : ''}`}
-        >
-          {instructionSteps[step]}
-        </div>
-      </InstructionPanel>
+      <InstructionLog {...{ step }} />
       <StepActions onBack={onBack} onClick={onNext} />
     </div>
   )
@@ -146,6 +189,40 @@ function Hint({ children }: { children: ReactNode }) {
     <p className="mt-6 border-t border-white/6 pt-6 text-left text-sm leading-relaxed text-white/40">
       <span className="text-white/55">Hint:</span> {children}
     </p>
+  )
+}
+
+function InstructionLogEntry({
+  children,
+  entering,
+  isCurrent,
+  isFirst,
+}: {
+  children: ReactNode
+  entering: boolean
+  isCurrent: boolean
+  isFirst: boolean
+}) {
+  const [open, setOpen] = useState(!entering)
+
+  useEffect(() => {
+    if (!entering) return
+    const id = requestAnimationFrame(() => setOpen(true))
+    return () => cancelAnimationFrame(id)
+  }, [entering])
+
+  return (
+    <div
+      className={`grid transition-[grid-template-rows] duration-550 ease-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'} ${isFirst ? '' : 'border-t border-white/6 pt-6'}`}
+    >
+      <div className="min-h-0 overflow-hidden">
+        <div
+          className={`flex flex-col gap-4 text-base leading-relaxed transition-[color,opacity] duration-500 ease-out ${isCurrent ? 'text-white/60' : 'text-white/38'} ${isFirst ? 'text-center' : ''} ${entering && open ? 'instruction-flow-in' : entering ? 'opacity-0' : ''}`}
+        >
+          {children}
+        </div>
+      </div>
+    </div>
   )
 }
 
