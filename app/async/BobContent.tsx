@@ -79,7 +79,8 @@ export function BobContent() {
   const aliceRole = aliceData.r
   const bobRole = aliceRole === 'b' ? 'seller' : 'buyer'
 
-  if (bobsValue) return <BobSubmission alicePayload={payload!} bobsValue={bobsValue} onError={setError} />
+  if (bobsValue)
+    return <BobSubmission alicePayload={payload!} bobsValue={bobsValue} onError={setError} />
 
   return (
     <div className="flex flex-col items-center w-full max-w-md gap-7">
