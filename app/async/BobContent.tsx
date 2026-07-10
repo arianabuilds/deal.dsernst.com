@@ -8,7 +8,7 @@ import type { PlaintextData } from './binaryEncoding'
 import { LearnMoreLink } from '../LearnMoreLink'
 import { BobSubmission } from './BobSubmission'
 import { Input } from './Input'
-import { FlowIn, InstructionLog, StepActions, StepDots } from './Instructions'
+import { InstructionLog, StepActions, StepDots } from './Instructions'
 import { InviteTitle } from './InviteTitle'
 import { ResultDisplay } from './ResultDisplay'
 
@@ -35,9 +35,22 @@ export function BobContent() {
     result: null | number
   }>(null)
   const prevStep = useRef(0)
-  const inputEntering = step === 2 && prevStep.current < 2
+  const inputRef = useRef<HTMLDivElement>(null)
+  const [inputAnimating, setInputAnimating] = useState(false)
 
   useEffect(() => {
+    const entering = step === 2 && prevStep.current < 2
+    if (entering) setInputAnimating(true)
+    if (step !== 2) setInputAnimating(false)
+
+    if (entering) {
+      const id = window.setTimeout(() => {
+        inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+      }, 300)
+      prevStep.current = step
+      return () => window.clearTimeout(id)
+    }
+
     prevStep.current = step
   }, [step])
 
@@ -102,16 +115,17 @@ export function BobContent() {
             onClick={() => setStep(step + 1)}
           />
         ) : (
-          <FlowIn play={inputEntering}>
-            <div className="flex flex-col items-center gap-8">
-              <Input
-                label={`Enter your ${bobRole === 'buyer' ? 'max offer' : 'min price'}`}
-                onBack={() => setStep(1)}
-                onSubmit={setBobsValue}
-              />
-              <LearnMoreLink />
-            </div>
-          </FlowIn>
+          <div
+            className={`flex w-full scroll-mb-8 flex-col items-center gap-8 ${inputAnimating ? 'instruction-input-in' : ''}`}
+            ref={inputRef}
+          >
+            <Input
+              label={`Enter your ${bobRole === 'buyer' ? 'max offer' : 'min price'}`}
+              onBack={() => setStep(1)}
+              onSubmit={setBobsValue}
+            />
+            <LearnMoreLink />
+          </div>
         )}
       </div>
     </div>

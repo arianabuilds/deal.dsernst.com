@@ -14,14 +14,13 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en">
       <body className="antialiased">
-        <div
-          className="min-h-screen p-8 pt-4 flex flex-col items-center justify-center text-center"
-          style={{ minHeight: '100dvh' }} // ignore iOS bottom bar
-        >
-          <SiteHeader />
+        <div className="min-h-dvh p-8 pt-4 flex flex-col items-center text-center">
+          <div className="my-auto flex w-full flex-col items-center gap-6">
+            <SiteHeader />
 
-          {/* Content */}
-          {children}
+            {/* Content */}
+            {children}
+          </div>
         </div>
       </body>
     </html>

@@ -42,28 +42,6 @@ export const instructionSteps = [
   </>,
 ] as const
 
-export function FlowIn({ children, play }: { children: ReactNode; play: boolean }) {
-  const [visible, setVisible] = useState(!play)
-
-  useEffect(() => {
-    if (!play) return
-    const id = requestAnimationFrame(() => setVisible(true))
-    return () => cancelAnimationFrame(id)
-  }, [play])
-
-  return (
-    <div
-      className={`grid transition-[grid-template-rows] duration-550 ease-out ${visible ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
-    >
-      <div className="min-h-0 overflow-hidden">
-        <div className={play && visible ? 'instruction-flow-in' : play ? 'opacity-0' : ''}>
-          {children}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export function InstructionLog({ showAll, step }: { showAll?: boolean; step: number }) {
   const lastIdx = showAll ? instructionSteps.length - 1 : step
   const visibleSteps = instructionSteps.slice(0, lastIdx + 1)
