@@ -1,7 +1,8 @@
 'use client'
 
-import { Check, Lock, X } from 'lucide-react'
 import type { ReactNode } from 'react'
+
+import { Check, Lock, X } from 'lucide-react'
 
 export const instructionSteps = [
   <>
@@ -46,36 +47,6 @@ export function InstructionPanel({ children }: { children: ReactNode }) {
   return (
     <div className="w-full rounded-2xl border border-cyan-400/10 bg-gradient-to-b from-cyan-400/[0.06] to-cyan-400/[0.02] px-6 py-7 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]">
       {children}
-    </div>
-  )
-}
-
-function OutcomeRow({ children, icon }: { children: ReactNode; icon: ReactNode }) {
-  return (
-    <div className="flex items-start gap-3">
-      {icon}
-      <p className="leading-snug text-white/60">{children}</p>
-    </div>
-  )
-}
-
-function Hint({ children }: { children: ReactNode }) {
-  return (
-    <p className="mt-6 border-t border-white/[0.06] pt-6 text-left text-sm leading-relaxed text-white/40">
-      <span className="text-white/55">Hint:</span> {children}
-    </p>
-  )
-}
-
-export function StepDots({ step, total = 4 }: { step: number; total?: number }) {
-  return (
-    <div className="flex gap-1.5">
-      {Array.from({ length: total }, (_, i) => (
-        <div
-          className={`h-0.5 w-6 rounded-full transition-colors ${i <= step ? 'bg-white/45' : 'bg-white/10'}`}
-          key={i}
-        />
-      ))}
     </div>
   )
 }
@@ -136,6 +107,19 @@ export function StepBack({ onClick }: { onClick: () => void }) {
   )
 }
 
+export function StepDots({ step, total = 4 }: { step: number; total?: number }) {
+  return (
+    <div className="flex gap-1.5">
+      {Array.from({ length: total }, (_, i) => (
+        <div
+          className={`h-0.5 w-6 rounded-full transition-colors ${i <= step ? 'bg-white/45' : 'bg-white/10'}`}
+          key={i}
+        />
+      ))}
+    </div>
+  )
+}
+
 export function StepNext({
   children = 'Next',
   disabled,
@@ -154,5 +138,22 @@ export function StepNext({
     >
       {children}
     </button>
+  )
+}
+
+function Hint({ children }: { children: ReactNode }) {
+  return (
+    <p className="mt-6 border-t border-white/[0.06] pt-6 text-left text-sm leading-relaxed text-white/40">
+      <span className="text-white/55">Hint:</span> {children}
+    </p>
+  )
+}
+
+function OutcomeRow({ children, icon }: { children: ReactNode; icon: ReactNode }) {
+  return (
+    <div className="flex items-start gap-3">
+      {icon}
+      <p className="leading-snug text-white/60">{children}</p>
+    </div>
   )
 }
