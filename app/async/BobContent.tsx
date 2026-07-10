@@ -37,7 +37,6 @@ export function BobContent() {
     hasOverlap: boolean
     result: null | number
   }>(null)
-  const prevStep = useRef(0)
   const inputRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -46,16 +45,10 @@ export function BobContent() {
     const scrollId = window.setTimeout(() => {
       inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }, 900)
-    prevStep.current = step
     return () => {
       window.clearTimeout(revealId)
       window.clearTimeout(scrollId)
     }
-  }, [step])
-
-  useEffect(() => {
-    if (step === INPUT_STEP) return
-    prevStep.current = step
   }, [step])
 
   useEffect(() => {

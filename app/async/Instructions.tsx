@@ -92,23 +92,6 @@ export function InstructionPanel({ children }: { children: ReactNode }) {
   )
 }
 
-export function InstructionStep({
-  onBack,
-  onNext,
-  step,
-}: {
-  onBack?: () => void
-  onNext: () => void
-  step: number
-}) {
-  return (
-    <div className="flex flex-col items-center gap-8 w-full px-4">
-      <InstructionLog {...{ step }} />
-      <StepActions onBack={onBack} onClick={onNext} />
-    </div>
-  )
-}
-
 export function StepActions({
   children = 'Next',
   disabled,
