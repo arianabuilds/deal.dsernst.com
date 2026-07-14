@@ -1,24 +1,11 @@
-import Image from 'next/image'
-
-import { description, title } from '../constants'
+import { SiteHeader } from '../SiteHeader'
 
 export default function InviteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col items-center px-4 pb-5 pt-6 text-center sm:px-8 sm:py-10">
       <div className="flex w-full max-w-lg flex-col items-center gap-6 sm:my-auto sm:gap-10">
-        <div className="flex w-full flex-col items-center sm:max-w-md">
-          <header className="mb-6 mt-10 text-center sm:mb-8 sm:mt-0">
-            <Image
-              alt=""
-              className="mx-auto mb-2.5 h-9 w-9 opacity-75 sm:mb-3"
-              height={36}
-              priority
-              src="/apple-icon.png"
-              width={36}
-            />
-            <p className="text-[15px] leading-snug text-white/50 sm:text-sm">{title}</p>
-            <p className="mt-0.5 text-[13px] leading-relaxed text-white/35 sm:text-sm">{description}</p>
-          </header>
+        <div className="flex w-full flex-col items-center gap-6 sm:max-w-md sm:gap-8">
+          <SiteHeader />
           {children}
         </div>
       </div>

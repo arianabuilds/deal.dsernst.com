@@ -4,17 +4,19 @@ import { description, title } from './constants'
 
 export function SiteHeader() {
   return (
-    <header className="mb-2">
+    <header>
       <Image
         alt=""
-        className="mx-auto mb-3 h-9 w-9 opacity-75 sm:mb-4 sm:h-11 sm:w-11"
-        height={44}
+        className="mx-auto mb-2.5 h-9 w-9 opacity-75 sm:mb-3"
+        height={36}
         priority
         src="/apple-icon.png"
-        width={44}
+        width={36}
       />
-      <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
-      <p className="mt-1.5 text-lg text-white/40">{description}</p>
+      <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-[1.65rem]">
+        {title}
+      </h1>
+      <p className="mt-1 text-sm text-white/40">{description}</p>
     </header>
   )
 }
