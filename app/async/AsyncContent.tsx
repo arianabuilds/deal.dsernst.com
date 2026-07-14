@@ -51,55 +51,58 @@ export function Content() {
 
   return (
     <>
-      <SiteHeader />
+      <div className="flex w-full flex-1 flex-col items-center justify-center gap-6 sm:gap-10">
+        <SiteHeader />
 
-      <div className="flex w-full max-w-md flex-col items-center gap-10">
-        <TitleSection
-          {...{ dealTitle, name, setDealTitle, setName, titleStepDone }}
-          onNext={() => setTitleStepDone(true)}
-        />
+        <div className="flex w-full max-w-md flex-col items-center gap-10">
+          <TitleSection
+            {...{ dealTitle, name, setDealTitle, setName, titleStepDone }}
+            onNext={() => setTitleStepDone(true)}
+          />
 
-        {/* Role */}
-        {titleStepDone && (
-          <div className="flex w-full flex-col items-center border-t border-white/8 pt-10">
-            <RoleSelector onSelect={setRole} selectedRole={role} />
-          </div>
-        )}
+          {/* Role */}
+          {titleStepDone && (
+            <div className="flex w-full flex-col items-center border-t border-white/8 pt-10">
+              <RoleSelector onSelect={setRole} selectedRole={role} />
+            </div>
+          )}
 
-        {/* Instructions → Value */}
-        {role && (
-          <div className="flex w-full flex-col items-stretch gap-4 border-t border-white/8 pt-10 sm:gap-6">
-            <InstructionLog step={step} />
+          {/* Instructions → Value */}
+          {role && (
+            <div className="flex w-full flex-col items-stretch gap-4 border-t border-white/8 pt-10 sm:gap-6">
+              <InstructionLog step={step} />
 
-            {step < INPUT_STEP ? (
-              <StepActions
-                onBack={step > 0 ? () => setStep(step - 1) : undefined}
-                onClick={() => setStep(step + 1)}
-              />
-            ) : (
-              showInput && (
-                <div
-                  className="flex w-full scroll-mb-8 flex-col items-stretch gap-6 sm:gap-8"
-                  ref={inputRef}
-                >
-                  <Input
-                    animate
-                    onBack={() => setStep(INSTRUCTION_STEP_COUNT - 1)}
-                    onSubmit={setValue}
-                    role={role}
-                  />
-                </div>
-              )
-            )}
-          </div>
-        )}
+              {step < INPUT_STEP ? (
+                <StepActions
+                  onBack={step > 0 ? () => setStep(step - 1) : undefined}
+                  onClick={() => setStep(step + 1)}
+                />
+              ) : (
+                showInput && (
+                  <div
+                    className="flex w-full scroll-mb-8 flex-col items-stretch gap-6 sm:gap-8"
+                    ref={inputRef}
+                  >
+                    <Input
+                      animate
+                      onBack={() => setStep(INSTRUCTION_STEP_COUNT - 1)}
+                      onSubmit={setValue}
+                      role={role}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
-      <LearnMoreLink className="text-sm text-white/30 mt-8 block hover:text-white/50 transition-colors" />
-
-      <Link className="text-sm text-gray-400 mt-1 block hover:underline" href="/">
-        Switch to local-device mode
-      </Link>
+      <div className="flex shrink-0 flex-col items-center pt-8">
+        <LearnMoreLink className="text-sm text-white/30 block hover:text-white/50 transition-colors" />
+        <Link className="text-sm text-gray-400 mt-1 block hover:underline" href="/">
+          Switch to local-device mode
+        </Link>
+      </div>
     </>
   )
 }
@@ -120,15 +123,17 @@ function ShareUrlScreen({
 }) {
   return (
     <>
-      <SiteHeader />
-      {loading ? (
-        <p className="text-gray-400">Creating your Share URL...</p>
-      ) : signedPayload ? (
-        <ShareUrlDisplay payload={signedPayload} />
-      ) : (
-        <p className="text-red-400">Error creating Share URL</p>
-      )}
-      <LearnMoreLink className="text-sm text-white/30 mt-8 block hover:text-white/50 transition-colors" />
+      <div className="flex w-full flex-1 flex-col items-center justify-center gap-6 sm:gap-10">
+        <SiteHeader />
+        {loading ? (
+          <p className="text-gray-400">Creating your Share URL...</p>
+        ) : signedPayload ? (
+          <ShareUrlDisplay payload={signedPayload} />
+        ) : (
+          <p className="text-red-400">Error creating Share URL</p>
+        )}
+      </div>
+      <LearnMoreLink className="text-sm text-white/30 shrink-0 pt-8 block hover:text-white/50 transition-colors" />
     </>
   )
 }
