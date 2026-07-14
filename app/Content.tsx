@@ -8,7 +8,6 @@ import { Calculation } from './Calculation'
 import { LearnMoreLink } from './LearnMoreLink'
 import { ModeContainer } from './ModeSwitcher'
 import { PrivateInput } from './PrivateInput'
-import { SiteHeader } from './SiteHeader'
 
 export type Inputs = [string, string]
 export function Content() {
@@ -16,8 +15,6 @@ export function Content() {
 
   return (
     <>
-      <SiteHeader />
-
       {/* Private inputs */}
       <PrivateInput {...{ inputs: [input1, input2], setValues }} />
 

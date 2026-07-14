@@ -1,6 +1,10 @@
-export const LearnMoreLink = () => (
+export const LearnMoreLink = ({
+  className = 'text-sm text-gray-400 mt-16 block hover:underline',
+}: {
+  className?: string
+}) => (
   <a
-    className="text-sm text-white/30 mt-8 block hover:text-white/50 transition-colors"
+    {...{ className }}
     href="https://github.com/dsernst/deal.siv.org#dealsivorg"
     target="_blank"
   >

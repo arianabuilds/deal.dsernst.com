@@ -52,7 +52,7 @@ export function Content() {
         )}
       </div>
 
-      <LearnMoreLink />
+      <LearnMoreLink className="text-sm text-white/30 mt-8 block hover:text-white/50 transition-colors" />
 
       <Link className="text-sm text-gray-400 mt-1 block hover:underline" href="/">
         Switch to local-device mode
@@ -85,7 +85,7 @@ function ShareUrlScreen({
       ) : (
         <p className="text-red-400">Error creating Share URL</p>
       )}
-      <LearnMoreLink />
+      <LearnMoreLink className="text-sm text-white/30 mt-8 block hover:text-white/50 transition-colors" />
     </>
   )
 }

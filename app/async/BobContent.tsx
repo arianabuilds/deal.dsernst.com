@@ -120,7 +120,7 @@ export function BobContent() {
                 onSubmit={setBobsValue}
                 submitLabel="Do we have a win-win deal?"
               />
-              <LearnMoreLink />
+              <LearnMoreLink className="text-sm text-white/30 mt-8 block hover:text-white/50 transition-colors" />
             </div>
           )
         )}
