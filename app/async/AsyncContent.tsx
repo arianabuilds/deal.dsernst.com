@@ -101,7 +101,7 @@ function TitleStep({
           id="deal-title"
           onChange={(e) => setTitle(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onNext()}
-          placeholder="e.g. Car sale"
+          placeholder="e.g. Consulting Gig"
           type="text"
           value={title}
         />
