@@ -119,8 +119,8 @@ export function BobContent() {
 
         {step < INPUT_STEP ? (
           <StepActions
-            onBack={step > 0 ? () => setStep(step - 1) : undefined}
             onClick={() => setStep(step + 1)}
+            onSkip={() => setStep(INPUT_STEP)}
           />
         ) : (
           showInput && (

@@ -95,20 +95,28 @@ export function InstructionPanel({ children }: { children: ReactNode }) {
 export function StepActions({
   children = 'Next',
   disabled,
-  onBack,
   onClick,
+  onSkip,
 }: {
   children?: ReactNode
   disabled?: boolean
-  onBack?: () => void
   onClick: () => void
+  onSkip?: () => void
 }) {
   return (
     <div className="flex flex-col items-center gap-3">
       <StepNext disabled={disabled} onClick={onClick}>
         {children}
       </StepNext>
-      {onBack && <StepBack onClick={onBack} />}
+      {onSkip && (
+        <button
+          className="text-sm text-white/30 hover:text-white/50 transition-colors cursor-pointer"
+          onClick={onSkip}
+          type="button"
+        >
+          Skip
+        </button>
+      )}
     </div>
   )
 }
