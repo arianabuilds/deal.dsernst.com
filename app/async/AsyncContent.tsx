@@ -35,10 +35,10 @@ export function Content() {
 
   useEffect(() => {
     if (!role || step !== INPUT_STEP) return setShowInput(false)
-    const revealId = window.setTimeout(() => setShowInput(true), 500)
+    const revealId = window.setTimeout(() => setShowInput(true), 280)
     const scrollId = window.setTimeout(() => {
       inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
-    }, 900)
+    }, 480)
     return () => {
       window.clearTimeout(revealId)
       window.clearTimeout(scrollId)

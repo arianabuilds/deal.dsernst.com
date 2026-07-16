@@ -46,20 +46,20 @@ body {
   }
 
   .instruction-stagger-1 {
-    animation: instruction-input-in 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: instruction-input-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
     animation-delay: 0ms;
     opacity: 0;
   }
 
   .instruction-stagger-2 {
-    animation: instruction-input-in 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: 280ms;
+    animation: instruction-input-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 140ms;
     opacity: 0;
   }
 
   .instruction-stagger-3 {
-    animation: instruction-input-in 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: 560ms;
+    animation: instruction-input-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 280ms;
     opacity: 0;
   }
 }

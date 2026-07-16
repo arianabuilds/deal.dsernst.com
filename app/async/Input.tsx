@@ -30,7 +30,7 @@ export function Input({
 
   useEffect(() => {
     if (!animate) return
-    const id = window.setTimeout(() => document.getElementById('price-input')?.focus(), 1200)
+    const id = window.setTimeout(() => document.getElementById('price-input')?.focus(), 720)
     return () => window.clearTimeout(id)
   }, [animate])
 
