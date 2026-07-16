@@ -128,7 +128,7 @@ export function BobContent() {
               <Input
                 animate
                 label={`Enter your ${bobRole === 'buyer' ? 'max offer' : 'min price'}`}
-                onBack={() => setStep(INSTRUCTION_STEP_COUNT - 1)}
+                onBack={() => setStep(0)}
                 onSubmit={setBobsValue}
                 submitLabel="Do we have a win-win deal?"
               />

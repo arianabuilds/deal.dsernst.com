@@ -78,7 +78,7 @@ export function Content() {
                   >
                     <Input
                       animate
-                      onBack={() => setStep(INSTRUCTION_STEP_COUNT - 1)}
+                      onBack={() => setStep(0)}
                       onSubmit={setValue}
                       role={role}
                     />
