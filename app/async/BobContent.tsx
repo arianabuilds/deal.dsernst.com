@@ -57,6 +57,7 @@ export function BobContent() {
       return setLoading(false)
     }
 
+    // Check invite status
     fetch('/async/api/validate', {
       body: JSON.stringify({ payload }),
       headers: { 'Content-Type': 'application/json' },
@@ -77,6 +78,7 @@ export function BobContent() {
           ...(data.title !== undefined && { title: data.title }),
         } as PlaintextData)
 
+        // If invite already has results, show them
         if (data.used && data.result) setExistingResult(data.result)
       })
       .catch(() => {
@@ -92,6 +94,7 @@ export function BobContent() {
 
   if (existingResult) return <ResultDisplay result={existingResult} title={aliceData?.title} />
 
+  // Determine Bob's role (opposite of Alice's)
   const aliceRole = aliceData.r
   const bobRole = aliceRole === 'b' ? 'seller' : 'buyer'
 
@@ -100,7 +103,10 @@ export function BobContent() {
 
   return (
     <div className="flex w-full flex-col items-center gap-5 sm:gap-8">
-      <InviteTitle subtitle={`You're the potential ${bobRole}.`} title={aliceData.title} />
+      <InviteTitle
+        subtitle={`You've been invited as a potential ${bobRole}.`}
+        title={aliceData.title}
+      />
 
       <div className="flex w-full flex-col items-stretch gap-4 sm:gap-6">
         <InstructionLog step={step} />
