@@ -15,7 +15,7 @@ export function ResultDisplay({ result, title }: { result: MPCResult; title?: st
     return (
       <div className="flex flex-col items-center gap-5 max-w-md">
         <InviteTitle title={title} />
-        <p className="text-xl text-white/90">No overlap</p>
+        <p className="text-xl text-white/90">No overlap, sorry</p>
         <p className="text-sm text-white/40">
           The seller&apos;s minimum is higher than the buyer&apos;s maximum.
         </p>
