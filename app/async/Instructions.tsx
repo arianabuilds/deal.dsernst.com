@@ -4,7 +4,8 @@ export const Instructions = () => (
     <li>Neither side will see the other&apos;s input.</li>
     <li>
       <span className="mt-6 block text-xs">✅</span> If there is an overlap, a
-      fair random win-win price will be picked between min & max.
+      win-win price is picked within our limits, centered on the midpoint, with
+      random noise for privacy.
     </li>
     <li>
       <span className="mt-6 block text-xs">❌</span> If there&apos;s no overlap,
