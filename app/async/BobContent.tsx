@@ -78,7 +78,7 @@ export function BobContent() {
       {!bobsValue ? (
         <div className="flex flex-col items-center gap-4">
           <p className="text-gray-400 text-center mb-4">
-            You{"'"}ve been invited as a{' '}
+            You{"'"}ve been invited as a potential{' '}
             <span className="font-semibold">{bobRole === 'buyer' ? 'Buyer' : 'Seller'}</span>
             {aliceData.title ? (
               <>
